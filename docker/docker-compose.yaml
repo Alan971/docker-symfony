@@ -1,0 +1,52 @@
+networks:
+  symfony_network:
+
+services:
+  app:
+    container_name: symfony_app
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    environment:
+      -SERVER_NAME: ${SERVER_NAME}
+      -APACHE_DOCUMENT_ROOT: /var/www/html/public
+    volumes:
+      - ${APP_FOLDER}:/var/www/html  
+    ports:
+      - "80:80"  
+    env_file:
+      - .env
+    networks:
+      symfony_network:
+  db:
+    image: mariadb:10.5
+    container_name: symfony-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE_NAME}
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    env_file:
+      - .env
+    volumes:
+      - ./db_data:/var/lib/mysql
+    networks:
+      symfony_network:
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8081:80"
+      # Accès à phpMyAdmin sur le port 8081
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    networks:
+      - symfony_network
+    
+volumes:
+  db_data:
+    driver: local

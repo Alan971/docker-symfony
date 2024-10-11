@@ -1,0 +1,40 @@
+EN
+This project allows you to install a Symfony project locally on a Windows machine with Docker.
+It installs a MySQL database and phpMyadmin.
+It installs php, the versions of which can be chosen (version 8.1 is installed by default)
+You just have to choose the version you want in the php.dockerfile, first line.
+It installs Apache
+It installs the Symfony project
+In the .env file you can choose the name of the folder which will be the name of the application and the URL of your project (followed by .test)
+In this same file you can choose the type of symfony project you want to install.
+By default, the webapp-pack project is installed
+The application passwords are to be set in the .env file
+
+To launch the project, simply run the following command:
+docker-compose up -d
+
+Note that the application folder is created in the parent folder of this folder.
+Also, it is necessary to have a docker, composer, symfony environment installed on your machine beforehand.
+I have only tested this solution on an Ubuntu 20.04 LTS machine, mine.
+please give me feedback if you have any questions.
+
+
+FR
+Ce projet permet d'installer un projet Symfony en local sur une machine Windows avec Docker.
+Il installe une base de données MySQL et phpMyadmin.
+il installe php dont on peut choisir entre les versions (la version 8.1 est installée par défaut)
+il suffit de choisir la version que l'on souhaite dans le php.dockerfile, première ligne.
+il installe Apache 
+il installe le projet Symfony
+Dans le fichier .env vous pourrez choisir le nom du dossier qui sera le nom de l'application et le l'url de votre projet ( suivit de.test)
+Dans ce même fichier vous pourrez choisir le type de projet symfony que vous souhaitez installer.
+par défaut il est installé le projet webapp-pack
+Les mots de passe de l'application sont à paramètrer dans le fichier .env
+
+Pour lancer le projet il suffit de lancer la commande suivante :
+docker-compose up -d
+
+Notez que le dossier de l'application est créé dans le dossier parent de ce dossier.
+Egalement, il est nécessaire d'avoir au préalable un environnement docker, composer, symfony installé sur votre machine. 
+Je n'ai testé cette solution que sur une machine Ubuntu 20.04 LTS, la mienne.
+merci de me faire des retours si vous avez des questions.
